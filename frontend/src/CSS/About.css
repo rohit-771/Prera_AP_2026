@@ -1,0 +1,300 @@
+body {
+    background-color: black;
+    font-family:Arial, Helvetica, sans-serif ;
+}
+
+/* Below si the code for intro jsx file  */
+#intro-content {
+    font-size: 23px;
+    font-weight: lighter;
+    color: rgb(187, 184, 184);
+    width: 50%;
+    line-height: 30px;
+    margin-top: 20px;
+    margin-bottom:100px;
+}
+
+#about-box {
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    border-radius: 50px;
+    width: 150px;
+    padding: 5px;
+    text-align: center;
+    font-weight: lighter;
+    color: gold;
+}
+
+.about-page-wrapper{
+    margin-left: 80px;
+    margin-right: 80px;
+    padding-top: 80px;
+}
+
+.about-heading{
+    font-size: 55px;
+    font-weight: bolder;
+    margin-bottom: 0px;
+    color: white;
+}
+
+.about-heading-gold{
+    font-size: 55px;
+    font-weight: bolder;
+    margin-top: 0px;
+    color: gold;
+}
+
+.about-details-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 100px;
+}
+
+#detail_card{
+    border:1px solid rgba(255,215,0,0.3);
+    background-color: rgb(22, 21, 21);
+    padding:15px 15px 0px 25px;
+    height:200px;
+    width:100%;
+    border-radius: 30px;
+    box-sizing: border-box;
+}
+
+#detail_card:hover{
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+    transition:smooth 0.6s;
+    background-color: rgb(20, 20, 19);
+}
+
+/* Below is the CSS code for the Numbers Impact jsx page */
+
+.impact-numbers-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+#impact-div{
+    background-color: rgb(22, 21, 21);
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    border-radius:30px;
+    text-align: center;
+    height: auto;
+    min-height: 280px;
+    width: 100%;
+    padding: 20px 10px;
+    box-sizing: border-box;
+}
+
+#impact-div:hover{
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+    transform:translateY(-1.5px);
+    transition:smooth 0.8s;
+}
+/* Below is the CSS code for the team jsx file */
+.team {
+    background: black;
+    color: rgb(129, 124, 124);
+    padding: 80px 0;
+    text-align: center;
+}
+
+.container {
+    width: 70%;
+    margin: auto;
+}
+
+.title {
+    font-size: 5rem;
+    font-weight: 700;
+    color: rgb(255, 215, 0);
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: white;
+    margin-bottom: 50px;
+    font-size: 21.12px;
+
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+}
+
+.card {
+    background: #1a1a1a;
+    padding: 25px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    height: 370px;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
+}
+
+.image {
+    width: 100%;
+    height: 250px;
+    background: linear-gradient(135deg, #222, #333);
+    border-radius: 10px;
+    margin-bottom: 15px;
+    object-fit: cover;
+    object-position: 40% 50%;
+}
+
+
+.card h3 {
+    margin: 10px 0 5px;
+    font-size: 21.12px;
+}
+
+.card p {
+    color: #bbbbbb;
+    font-size: 18px;
+}
+
+.icons {
+    margin-top: 12px;
+}
+
+.icons span {
+    margin: 0 6px;
+    cursor: pointer;
+    color: #d4af37;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.icons span:hover {
+    color: #ffffff;
+}
+
+.icons a {
+    margin: 0 8px;
+    color: #d4af37;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.icons a:hover {
+    color: #ffffff;
+    transform: scale(1.2);
+}
+
+
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .about-page-wrapper{
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+    .about-heading, .about-heading-gold{
+        font-size: 42px;
+    }
+    #intro-content{
+        width: 70%;
+        font-size: 20px;
+    }
+    .about-details-grid{
+        margin-top: 60px;
+    }
+    .impact-numbers-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .container{
+        width: 85%;
+    }
+    .title{
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 768px){
+    .about-page-wrapper{
+        margin-left: 20px;
+        margin-right: 20px;
+        padding-top: 60px;
+    }
+    .about-heading, .about-heading-gold{
+        font-size: 32px;
+    }
+    #intro-content{
+        width: 90%;
+        font-size: 18px;
+        margin-bottom: 60px;
+    }
+    .about-details-grid{
+        grid-template-columns: 1fr;
+        margin-top: 40px;
+    }
+    #detail_card{
+        height: auto;
+        min-height: 160px;
+    }
+    .impact-numbers-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+    #impact-div{
+        min-height: auto;
+        padding: 15px 10px;
+    }
+    .container{
+        width: 90%;
+    }
+    .title{
+        font-size: 2.5rem;
+    }
+    .team{
+        padding: 40px 0;
+    }
+    .card{
+        height: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px){
+    .about-page-wrapper{
+        margin-left: 12px;
+        margin-right: 12px;
+        padding-top: 40px;
+    }
+    .about-heading, .about-heading-gold{
+        font-size: 26px;
+    }
+    #intro-content{
+        width: 95%;
+        font-size: 16px;
+        line-height: 26px;
+        margin-bottom: 40px;
+    }
+    .impact-numbers-grid{
+        grid-template-columns: 1fr 1fr;
+        gap: 0;
+    }
+    #impact-div{
+        border-radius: 20px;
+    }
+    .title{
+        font-size: 2rem;
+    }
+    .subtitle{
+        font-size: 16px;
+    }
+    .container{
+        width: 95%;
+    }
+}
