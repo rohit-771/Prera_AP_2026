@@ -84,6 +84,7 @@ PRERA provides a common platform where events and brands can connect, explore co
 
 ## 📂 Project Structure
 
+```text
 PRERA/
 │
 ├── frontend/
@@ -105,6 +106,7 @@ PRERA/
 │   └── package.json
 │
 └── README.md
+```
 
 ## 🔮 Future Enhancements
 
