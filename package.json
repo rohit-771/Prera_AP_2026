@@ -1,0 +1,13 @@
+{
+  "name": "prera-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PRERA - Forms & Application Management System",
+  "scripts": {
+    "dev:backend": "cd backend && npm run start",
+    "dev:frontend": "cd frontend && npm run dev",
+    "seed": "cd backend && npm run seed",
+    "prisma:push": "cd backend && npm run prisma:push",
+    "prisma:studio": "cd backend && npm run prisma:studio"
+  }
+}

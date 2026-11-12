@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model EventSubmission {
+  id               String   @id @default(uuid())
+  referenceId      String   @unique
+  organizerName    String
+  contactPerson    String
+  email            String
+  phone            String
+  organization     String
+  eventName        String
+  category         String
+  description      String
+  eventDate        DateTime
+  location         String
+  expectedAudience String
+  requirements     String
+  socialLinks      String?
+  status           String   @default("Pending")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+  @@index([email])
+  @@index([referenceId])
+  @@map("event_submissions")
+}
+
+model WorkApplication {
+  id              String   @id @default(uuid())
+  referenceId     String   @unique
+  fullName        String
+  email           String
+  phone           String
+  institution     String
+  studyYear       String?
+  role            String
+  applicationType String
+  skills          String
+  experience      String?
+  motivation      String
+  linkedinUrl     String?
+  portfolioUrl    String?
+  resumeUrl       String?
+  status          String   @default("Pending")
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+  @@index([email])
+  @@index([referenceId])
+  @@map("work_applications")
+}
+
+model Admin {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("admins")
+}
