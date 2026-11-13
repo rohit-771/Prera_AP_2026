@@ -1,154 +1,140 @@
-# 🚀 PRERA — Event & Brand Collaboration Platform
+# PRERA — Event & Brand Collaboration Platform
 
-<p align="center">
-  <b>Connecting Events with the Right Brands. Building Partnerships That Matter.</b>
-</p>
+PRERA connects event organizers with brands and sponsors, and provides a way for students and professionals to apply to work with the PRERA team.
 
-PRERA is a technology-driven event management and brand collaboration platform that connects event organizers with relevant brands and sponsors. It aims to simplify sponsorship opportunities, build meaningful partnerships, and create impactful event experiences.
+## Features
 
----
+- Home, About, Events, Partners and Connect pages.
+- Connect page follows the PRERA black-and-gold design.
+- Two separate forms: **Host an Event / Event Collaboration** and **Join PRERA / Work With Us**.
+- Both forms submit to the Express API and store submissions in PostgreSQL through Prisma.
+- Server-side validation, rate limiting and generated reference IDs.
+- Protected admin API endpoints for reviewing and managing submissions.
 
-## 📌 About PRERA
+## Tech stack
 
-PRERA bridges the gap between event organizers looking for sponsorships and brands searching for the right audience.
-The platform provides a centralized solution for event discovery, brand collaborations, sponsorship opportunities, and communication between users and the PRERA team.
-This project is developed as part of the **Advanced Programming (AP) subject** to demonstrate practical web development, frontend and backend integration, form handling, and database management.
+- Frontend: React, Vite, React Router, CSS
+- Backend: Node.js, Express
+- Database: PostgreSQL, Prisma ORM
 
-## 🎯 Problem Statement
+## Requirements
 
-- Event organizers struggle to find suitable sponsors.
-- Brands find it difficult to reach their target audience.
-- There is no proper connection between event organizers and potential sponsors.
-- Managing collaboration inquiries can be time-consuming.
+Install Node.js (LTS) and PostgreSQL. Keep the database running while using the app.
 
-## 💡 Our Solution
+## 1. Configure PostgreSQL and backend
 
-PRERA provides a common platform where events and brands can connect, explore collaboration opportunities, and build successful partnerships.
+```bash
+cd backend
+npm install
+```
 
-## ✨ Features
+Create a database named `prera_db` in PostgreSQL, then copy `.env.example` to `.env` and update `DATABASE_URL` with your PostgreSQL username and password.
 
-### 🏠 Home Page
-- Introduction to PRERA.
-- Overview of services and achievements.
-- Information about brand collaborations.
-- Team introduction.
+Example:
 
-### 📅 Event Listing
-- Displays available and upcoming events.
-- Provides event-related information.
-- Helps users explore different event opportunities.
+```env
+DATABASE_URL="postgresql://YOUR_USERNAME:YOUR_PASSWORD@localhost:5432/prera_db?schema=public"
+PORT=5001
+NODE_ENV=development
+FRONTEND_URL=http://localhost:5173
+```
 
-### 🤝 Brand Collaborations
-- Sponsor sourcing and partnership opportunities.
-- Connects brands with relevant events.
-- Promotes strategic collaborations.
+Do not commit `.env`; it contains credentials.
 
-### 📩 Contact Us
-- Dedicated contact page with an inquiry form.
-- Users can submit queries and collaboration requests.
-- Form submissions are handled by the backend.
-- Inquiry data is stored in the database.
+Generate Prisma Client and sync the schema:
 
-### ⚙️ Backend Functionality
-- Handles incoming form submissions.
-- Processes user-provided information.
-- Stores contact inquiries in the database.
-- Provides structured communication between frontend and backend.
+```bash
+npx prisma generate
+npx prisma db push
+```
 
-## 📊 Our Traction
+Start the backend:
 
-| Achievement | Numbers |
-|---|---:|
-| Events Executed | 20+ |
-| Brand Collaborations | 25+ |
-| Organizer Network | Growing |
+```bash
+npm run dev
+```
 
-## 👥 Who We Serve
+Backend health check: http://localhost:5001/api/health
 
-- Event Organizers
-- Brands & Startups
-- Student Communities
-- Developers & Tech Events
+## 2. Start the frontend
 
-## 🛠️ Tech Stack
+Open a second terminal from the project root:
 
-**Frontend**
-- React.js
-- JavaScript
-- CSS
+```bash
+cd frontend
+npm install
+```
 
-**Backend**
-- Backend API
-- Form Handling
-- Database Integration
+Copy `frontend/.env.example` to `frontend/.env` (the default points to `http://localhost:5001/api`).
 
-## 📂 Project Structure
+Start Vite:
+
+```bash
+npm run dev
+```
+
+Open the local URL printed by Vite, normally http://localhost:5173.
+
+## 3. Test the two forms
+
+1. Open **Let's Connect** in the navbar.
+2. Select **Submit Event Details** to open the event collaboration form.
+3. Fill all required fields and submit. A reference ID should appear after a successful save.
+4. Go back and select **Explore Opportunities** to open the Join PRERA form.
+5. Submit a valid application. It should also return a reference ID.
+
+Submissions are stored in the PostgreSQL tables:
+
+- `event_submissions`
+- `work_applications`
+
+You can inspect them in pgAdmin under `prera_db → Schemas → public → Tables`, then right-click a table and choose **View/Edit Data → All Rows**.
+
+## API endpoints
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/api/health` | Backend and database health |
+| POST | `/api/events` | Public event proposal submission |
+| POST | `/api/applications` | Public work application submission |
+| GET/PATCH/DELETE | `/api/events/*` | Admin-protected event management |
+| GET/PATCH/DELETE | `/api/applications/*` | Admin-protected application management |
+| `/api/admin/*` | Admin authentication and management |
+
+## GitHub workflow
+
+From the project root:
+
+```bash
+git status
+git add .
+git commit -m "Complete PRERA connect forms and API integration"
+git push origin main
+```
+
+Review `git status` before committing. Never commit `.env` files or `node_modules`.
+
+## Project structure
 
 ```text
 PRERA/
-│
 ├── frontend/
 │   ├── public/
-│   ├── src/
-│   │   ├── assets/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   └── package.json
-│
+│   └── src/
+│       ├── About_components/
+│       ├── Contact_components/
+│       │   ├── Connect-page.jsx
+│       │   └── Connect-page.css
+│       ├── Events_components/
+│       ├── Home_components/
+│       ├── Pages/
+│       ├── Partners_compoonents/
+│       ├── App.jsx
+│       └── main.jsx
 ├── backend/
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── config/
-│   ├── server.js
-│   └── package.json
-│
-└── README.md
+│   ├── prisma/schema.prisma
+│   └── src/
+└── dbms/
 ```
 
-## 🔮 Future Enhancements
-
-- User authentication and authorization.
-- Dedicated dashboards for event organizers and brands.
-- Advanced event filtering and searching.
-- Online sponsorship request management.
-- Real-time notifications.
-- Admin dashboard for managing events and inquiries.
-
-## 👨‍💻 Team
-
-PRERA is built by a passionate team working towards creating meaningful event and brand collaborations.
-
-**Team Roles:**
-- Founder
-- Co-Founder
-- Partnership Head
-- Marketing Head
-- Operations Head
-
-## 🎓 Academic Details
-
-| Detail | Description |
-|---|---|
-| Project Name | PRERA |
-| Subject | Advanced Programming (AP) |
-| Project Type | Event Management & Brand Collaboration Platform |
-| Domain | Full-Stack Web Development |
-
-## 🤝 Contributing
-
-Contributions, suggestions, and improvements are welcome.
-
-If you have ideas to improve PRERA, feel free to fork the repository and submit a pull request.
-
-## 📬 Contact
-
-For event partnerships, sponsorship opportunities, or general inquiries, use the Contact Us section on the PRERA platform.
-
----
-
-<p align="center">
-  <b>PRERA — Creating Connections. Enabling Collaborations. Building Experiences. 🚀</b>
-</p>
+PRERA — Creating Connections. Enabling Collaborations. Building Experiences.
